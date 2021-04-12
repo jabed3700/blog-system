@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\DashboardController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -39,6 +40,12 @@ Route::get('/category',function(){
 Route::get('/about',function(){
     return view('front.about');
 });
+
+
+
+// Admin panel 
+
+Route::get('/dashboard','DashboardController@index')->name('dashboard');
 
 Auth::routes();
 
