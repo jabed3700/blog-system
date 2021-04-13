@@ -23,7 +23,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/',function(){
     return view('front.home');
-});
+})->name('website');
 
 Route::get('/contact',function(){
     return view('front.contact');
@@ -46,6 +46,11 @@ Route::get('/about',function(){
 // Admin panel 
 
 Route::get('/dashboard','DashboardController@index')->name('dashboard');
+Route::resource('category','CategoryController');
+
+
+
+
 
 Auth::routes();
 
