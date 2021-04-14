@@ -35,6 +35,7 @@
                     <form method="post" action="{{route('category.store')}}">
                         @csrf
                         <div class="card-body">
+                          @include('includes.errors')
                           <div class="form-group">
                             <label for="name"> Name</label>
                             <input type="text" name="name" class="form-control" id="exampleInputEmail1" placeholder="Category Name">
