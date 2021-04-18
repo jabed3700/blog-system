@@ -72,6 +72,11 @@
             <a href="{{route('tag.index')}}" class="nav-link">
               <i class="nav-icon fas fa-tag"></i> Tag </a>
           </li>
+
+          <li class="nav-item">
+            <a href="{{route('post.index')}}" class="nav-link">
+              <i class="nav-icon fas fa-tag"></i> Post </a>
+          </li>
         </ul>
       </nav>
       <!-- /.sidebar-menu -->

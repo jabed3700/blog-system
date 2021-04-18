@@ -66,8 +66,8 @@
                       
                       @else
                       <tr>
-                        <td colspan="5"><h5>No tags found</h5></td>
-                      </tr>
+                        <td colspan="5"><h5 class="text-center">No tags found</h5></td>
+                      </tr> 
                       @endif
                     </tbody>
                   </table>
