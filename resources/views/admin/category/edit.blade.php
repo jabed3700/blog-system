@@ -12,7 +12,7 @@
           <ol class="breadcrumb float-sm-right">
             <li class="breadcrumb-item"><a href="{{route('website')}}">Home</a></li>
             <li class="breadcrumb-item"><a href="{{route('category.index')}}">category list</a></li>
-            <li class="breadcrumb-item active">Create Category</li>
+            <li class="breadcrumb-item active">Edit Category</li>
           </ol>
         </div><!-- /.col -->
       </div><!-- /.row -->
@@ -26,28 +26,29 @@
             <div class="card">
                 <div class="card-header">
                   <div class="d-flex justify-content-between align-items-center">
-                    <h3 class="card-title">Create Category</h3>
-                    <a href="{{route('category.index')}}" class="btn btn-primary">Go back to category list</a>
+                    <h3 class="card-title">Edit - {{$category->name}} category</h3>
+                    <a href="{{route('category.create')}}" class="btn btn-primary">Go back to category list</a>
                   </div>
                 </div>
               
                 <div class="card-body p-0">
                   <div class="row">
                     <div class="col-6">
-                      <form method="post" action="{{route('category.store')}}">
+                      <form method="post" action="{{route('category.update',[$category->id])}}">
                         @csrf
+                        @method('PUT')
                         <div class="card-body">
                           @include('includes.errors')
                           <div class="form-group">
                             <label for="name"> Name</label>
-                            <input type="text" name="name" class="form-control" id="exampleInputEmail1" placeholder="Category Name">
+                            <input type="text" name="name" value="{{$category->name}}" class="form-control" id="exampleInputEmail1" placeholder="Category Name">
                           </div>
                           <div class="form-group">
                             <label for="descrption">Description</label>
-                           <textarea name="description" id="descrption" cols="30" rows="4" placeholder="description" class="form-control"></textarea>
+                           <textarea name="description" id="descrption" cols="30" rows="4" placeholder="description" class="form-control"> {{$category->description}}</textarea>
                           </div>        
                         </div>
-                        <button type="submit" class="btn btn-primary btn-lg ml-3 mb-4">Submit</button>
+                        <button type="submit" class="btn btn-primary btn-lg ml-3 mb-4">Update Category</button>
                       </form>
                     </div>
                   </div>

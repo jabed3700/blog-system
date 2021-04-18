@@ -31,7 +31,7 @@
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
-          <li class="nav-item has-treeview ">
+          {{-- <li class="nav-item has-treeview ">
             <a href="#" class="nav-link active">
               <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>
@@ -53,8 +53,8 @@
                 </a>
               </li>
             </ul>
-          </li>
-          <li class="nav-item">
+          </li> --}}
+          {{-- <li class="nav-item">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-th"></i>
               <p>
@@ -62,10 +62,15 @@
                 <span class="right badge badge-danger">New</span>
               </p>
             </a>
-          </li>
+          </li> --}}
           <li class="nav-item">
             <a href="{{route('category.index')}}" class="nav-link">
-              <i class="nav-icon fas fa-th"></i> Category </a>
+              <i class="nav-icon fas fa-tags"></i> Category </a>
+          </li>
+
+          <li class="nav-item">
+            <a href="{{route('tag.index')}}" class="nav-link">
+              <i class="nav-icon fas fa-tag"></i> Tag </a>
           </li>
         </ul>
       </nav>

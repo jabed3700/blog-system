@@ -42,17 +42,33 @@
                       </tr>
                     </thead>
                     <tbody>
-                      <tr>
-                        <td>1.</td>
-                        <td>Update software</td>
-                        <td>
-                          <div class="progress progress-xs">
-                            <div class="progress-bar progress-bar-danger" style="width: 55%"></div>
-                          </div>
-                        </td>
-                        <td><span class="badge bg-danger">55%</span></td>
-                        <td><span class="badge bg-danger">55%</span></td>
-                      </tr>
+                    @if($categories->count())
+                    @php($i=1)
+                     @foreach ($categories as $category)
+                     <tr>
+                      <td>{{$i++}}</td>
+                      <td>{{$category->name}}</td>
+                      <td>
+                        {{$category->slug}}
+                      </td>
+                      <td>{{$category->id}}</td>
+                      <td class="d-flex">
+                        <a href="{{route('category.edit', [$category->id]) }}" class="mr-2">
+                          <span class="btn btn-primary btn-sm"><i class="fas fa-edit"></i></span>
+                        </a>
+
+                        <form action="{{ route('category.destroy', [$category->id]) }}" method="POST">
+                          @method('DELETE')
+                          @csrf 
+                          <button type="submit" class="btn btn-sm btn-danger"> <i class="fas fa-trash"></i> </button>
+                        </form>
+
+                      </td>
+                    </tr>
+                     @endforeach
+                     @else
+                      <tr><td colspan="5"><h5 class="text-center"> No categories found</h5></td></tr>
+                     @endif
                     </tbody>
                   </table>
                 </div>
