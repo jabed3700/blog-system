@@ -54,19 +54,19 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
 
     Route::resource('category', 'CategoryController');
     Route::resource('tag', 'TagController');
-    Route::resource('post', 'PostController');
-    Route::resource('user', 'UserController');
-    Route::get('/profile', 'UserController@profile')->name('user.profile');
-    Route::post('/profile', 'UserController@profile_update')->name('user.profile.update');
+    // Route::resource('post', 'PostController');
+    // Route::resource('user', 'UserController');
+    // Route::get('/profile', 'UserController@profile')->name('user.profile');
+    // Route::post('/profile', 'UserController@profile_update')->name('user.profile.update');
     
     // setting
-    Route::get('setting', 'SettingController@edit')->name('setting.index');
-    Route::post('setting', 'SettingController@update')->name('setting.update');
+    // Route::get('setting', 'SettingController@edit')->name('setting.index');
+    // Route::post('setting', 'SettingController@update')->name('setting.update');
 
     // Contact message
-    Route::get('/contact', 'ContactController@index')->name('contact.index');
-    Route::get('/contact/show/{id}', 'ContactController@show')->name('contact.show');
-    Route::delete('/contact/delete/{id}', 'ContactController@destroy')->name('contact.destroy');
+    // Route::get('/contact', 'ContactController@index')->name('contact.index');
+    // Route::get('/contact/show/{id}', 'ContactController@show')->name('contact.show');
+    // Route::delete('/contact/delete/{id}', 'ContactController@destroy')->name('contact.destroy');
 });
 
 
