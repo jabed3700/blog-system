@@ -130,7 +130,7 @@ class PostController extends Controller
      */
     public function show(Post $post)
     {
-        //
+        return view('admin.post.show',compact('post'));
     }
 
     /**
@@ -172,7 +172,7 @@ class PostController extends Controller
         $post->category_id = $request->category_id;
 
         $post->tags()->sync($request->tags);
-        
+
        if($request->hasFile('image')){
             $image = $request->file('image');
             $imageName = time().'.'.$image->getClientOriginalExtension();

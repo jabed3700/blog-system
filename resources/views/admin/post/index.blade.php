@@ -37,7 +37,7 @@
                         <th style="width: 10px">#</th>
                         <th>Image</th>
                         <th>Title</th>
-                        <th>slug</th>
+                        <th>tags</th>
                         <th>Category</th>
                         <th>Author</th>
                         <th>Action</th>
@@ -53,10 +53,14 @@
                                 <img src="{{asset($post->image)}}" alt="" class="img-fluid">
                           </div></td>
                           <td>{{$post->title}}</td>
-                          <td>{{$post->slug}}</td>
+                          <td>@foreach ($post->tags as $tag)
+                            <span class="badge badge-primary">{{$tag->tag_name}}</span>
+                          @endforeach</td>
                           <td>{{$post->category->name}}</td>
                           <td>{{$post->user->name}}</td>
                           <td class="d-flex">
+                            <a href="{{route('post.show',[$post->id])}}" class="mr-2"><span class="btn btn-info btn-sm">
+                              <i class="fas fa-eye"></i></span></a>
                             <a href="{{route('post.edit',[$post->id])}}" class="mr-2">
                               <span class="btn btn-sm btn-primary"><i class="fas fa-edit"></i></span>
                             </a>
