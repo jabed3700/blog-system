@@ -49,15 +49,15 @@
                      @foreach ($posts as $post)
                          <tr>
                            <td>{{$i++}}</td>
-                           <td><div class="" style="width:70px;overflow:hidden">
-                                <img src="{{asset($post->image)}}" alt="">
+                           <td><div class="" style="width:70px;height:70px;overflow:hidden">
+                                <img src="{{asset($post->image)}}" alt="" class="img-fluid">
                           </div></td>
                           <td>{{$post->title}}</td>
                           <td>{{$post->slug}}</td>
-                          <td>{{$post->category_id->name}}</td>
-                          <td>{{auth()->user()->name}}</td>
+                          <td>{{$post->category->name}}</td>
+                          <td>{{$post->user->name}}</td>
                           <td>
-                            <a href="{{route('category.edit',[$post->id])}}">
+                            <a href="{{route('post.edit',[$post->id])}}">
                               <span class="btn btn-sm btn-primary"><i class="fas fa-edit"></i></span>
                             </a>
 

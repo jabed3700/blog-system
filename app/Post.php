@@ -13,4 +13,11 @@ class Post extends Model
         'published_at',
     ];
 
+    public function category(){
+        return $this->belongsTo('App\category');
+    }
+
+    public function user(){
+        return $this->belongsTo('App\user');
+    }
 }
