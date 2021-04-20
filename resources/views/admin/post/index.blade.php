@@ -56,15 +56,15 @@
                           <td>{{$post->slug}}</td>
                           <td>{{$post->category->name}}</td>
                           <td>{{$post->user->name}}</td>
-                          <td>
-                            <a href="{{route('post.edit',[$post->id])}}">
+                          <td class="d-flex">
+                            <a href="{{route('post.edit',[$post->id])}}" class="mr-2">
                               <span class="btn btn-sm btn-primary"><i class="fas fa-edit"></i></span>
                             </a>
 
                             <form action="{{route('post.destroy',[$post->id])}}" method="POST">
                             @csrf
                             @method('DELETE')
-                                <button class="btn btn-sm btn-danger" type="submit"><i class="fas fa-edit
+                                <button class="btn btn-sm btn-danger" type="submit"><i class="fas fa-trash
                                   "></i></button>
                             </form>
                           </td>

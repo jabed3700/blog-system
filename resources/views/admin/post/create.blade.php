@@ -51,6 +51,14 @@
                                 @endforeach
                             </select>
                           </div>
+                          <div class="form-group d-flex">
+                          @foreach ($tags as $tag)
+                            <div class="custom-control custom-checkbox mr-3">
+                              <input class="custom-control-input" type="checkbox" id="tag{{$tag->id}}"  value="{{$tag->id}}" name="tags[]">
+                              <label for="tag{{$tag->id}}" value="" class="custom-control-label">{{$tag->tag_name}}</label>
+                            </div>
+                            @endforeach
+                          </div>
                           <div class="form-group">
                             <label for="descrption">Description</label>
                            <textarea name="description" id="descrption" cols="30" rows="4" placeholder="description" class="form-control">{{ old('description') }}</textarea>

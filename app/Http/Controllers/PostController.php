@@ -5,6 +5,7 @@ use Session;
 use Illuminate\Support\Str;
 use Carbon\Carbon;
 use App\Post;
+use App\Tag;
 use App\Category;
 use Illuminate\Http\Request;
 
@@ -29,7 +30,8 @@ class PostController extends Controller
     public function create()
     {
         $categories = Category::all();
-        return view('admin.post.create',compact('categories'));
+        $tags = Tag::all();
+        return view('admin.post.create',compact(['categories','tags']));
     }
 
     /**
@@ -41,6 +43,7 @@ class PostController extends Controller
     public function store(Request $request)
     {
         // return $request->all();
+        // dd($request->all());
 
         // validation 
         $this->validate($request,[
@@ -103,6 +106,7 @@ class PostController extends Controller
         //     $post->image = $directory.$image_new_name;
         //     $post->save();
         // }
+        $post->tags()->attach($request->tags);
 
        if($request->hasFile('image')){
            $image = $request->file('image');
@@ -139,7 +143,8 @@ class PostController extends Controller
     {
         // return $post;
         $categories = Category::all();
-        return view('admin.post.edit',compact(['categories','post']));
+        $tags = Tag::all();
+        return view('admin.post.edit',compact(['categories','post','tags']));
     }
 
     /**
@@ -153,34 +158,9 @@ class PostController extends Controller
     {
 
         // return $post->id;
-        // $this->validate($request, [
-        //     'title' => "required|unique:posts,title, $post->id",
-        //     'description' => 'required',
-        //     'category' => 'required',
-        // ]);
-        
-        // $post->title = $request->title;
-        // $post->slug = Str::slug($request->title);
-        // $post->description = $request->description;
-        // $post->category_id = $request->category;
-
-        // $post->tags()->sync($request->tags);
-
-        // if($request->hasFile('image')){
-        //     $image = $request->image;
-        //     $image_new_name = time() . '.' . $image->getClientOriginalExtension();
-        //     $image->move('storage/post/', $image_new_name);
-        //     $post->image = '/storage/post/' . $image_new_name;
-        // }
-
-        // $post->save();
-
-        // Session::flash('success', 'Post updated successfully');
-        // return redirect()->back();
-
+      
         // validation 
         $this->validate($request,[
-            // 'title' => "required|unique:posts,title, $post->id",
             'title' => "required|unique:posts,title, $post->id",
             'description' => 'required',
             'category_id' => 'required',
@@ -191,6 +171,8 @@ class PostController extends Controller
         $post->description = $request->description;
         $post->category_id = $request->category_id;
 
+        $post->tags()->sync($request->tags);
+        
        if($request->hasFile('image')){
             $image = $request->file('image');
             $imageName = time().'.'.$image->getClientOriginalExtension();
@@ -212,6 +194,36 @@ class PostController extends Controller
      */
     public function destroy(Post $post)
     {
-        //
+        
+        // if($post){
+        //     if(file_exists(public_path($post->image))){
+        //         unlink(public_path($post->image));
+        //     }
+
+        //     $post->delete();
+        //     Session::flash('Post deleted successfully');
+        // }
+
+        // return redirect()->back();
+
+        // if($post){
+        //     if(file_exists($post->image)){
+        //         unlink($post->image);
+        //         dd ('founded');
+        //     }else{
+        //        dd ('not founded');
+        //     }
+        // }
+
+        if($post){
+            if(file_exists($post->image)){
+                unlink($post->image);
+                // dd ('founded');
+            }
+            $post->delete();
+            Session::flash('success','Post deleted duccessfully');
+        }
+         return redirect()->back();
+
     }
 }
